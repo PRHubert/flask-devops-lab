@@ -5,6 +5,7 @@ import platform
 import socket
 import time
 START_TIME = time.time()
+import resource
 
 app = Flask(__name__)
 def load_config(path='config.json'):
@@ -35,6 +36,13 @@ def report():
 		'hostname':socket.gethostname(),
 		'python_version':platform.python_version(),
 		'uptime_seconds':round(time.time() - START_TIME, 2)
+		})
+
+@app.get('/api/metrics')
+def metrics():
+	return jsonify({
+		'requests_served': 'N/A',
+		'memory_kb': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
 		})
 
 if __name__ == '__main__':
