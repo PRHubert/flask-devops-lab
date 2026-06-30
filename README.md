@@ -1,4 +1,4 @@
-#Flask DevOps lab
+#Flask DevOps lab (Version B)
 ##Usage
 Activate the virtual environment, install requirements, and run the app:
 
